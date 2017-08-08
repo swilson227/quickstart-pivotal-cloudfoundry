@@ -46,15 +46,15 @@ Parameters:
     Description: ARN for pre-uploaded SSL certificate
   OpsManagerTemplate:
     Type: String
-    Default: https://s3-us-west-2.amazonaws.com/aws-pcf-quickstart-templates/ops-manager.json
+    Default: https://s3.amazonaws.com/quickstart-reference/pivotal/cloudfoundry/latest/templates/ops-manager.json
     Description: S3 Location for OpsManager CloudFormation Template
   CloudFoundryTemplate:
     Type: String
-    Default: https://s3-us-west-2.amazonaws.com/aws-pcf-quickstart-templates/cloud-formation.json
+    Default: https://s3.amazonaws.com/quickstart-reference/pivotal/cloudfoundry/latest/templates/cloud-formation.json
     Description: S3 Location for Base Deployment CloudFormation Template
   PCFAutomationRelease:
     Type: String
-    Default: https://s3-us-west-2.amazonaws.com/aws-pcf-quickstart-releases/quickstart-release.tgz
+    Default: https://s3.amazonaws.com/quickstart-reference/pivotal/cloudfoundry/latest/scripts/quickstart.tgz
     Description: S3 Location for Base Deployment CloudFormation Template
   ElbPrefix:
     Type: String
@@ -121,65 +121,49 @@ Rules:
           - ""
       AssertDescription: All key pair parameters must not be empty
 Mappings:
-  ## Mapping of OpsManager AMI in AWS Regions.
-  OpsManagerAMI:
+  AMIMapping:
     ap-northeast-1:
-      "64": ami-3b37295c
+      bootstrap: ami-fb59b29d
+      opsman: ami-bb54b6dd
     ap-northeast-2:
-      "64": ami-22a57b4c
+      bootstrap: ami-7621f818
+      opsman: ami-24a57c4a
     ap-south-1:
-      "64": ami-ca1d64a5
+      bootstrap: ami-09334966
+      opsman: ami-12c0b87d
     ap-southeast-1:
-      "64": ami-98f366fb
+      bootstrap: ami-23d54d40
+      opsman: ami-22f06d41
     ap-southeast-2:
-      "64": ami-62b5a701
+      bootstrap: ami-61c9d002
+      opsman: ami-96b5aaf5
     ca-central-1:
-      "64": ami-0377c867
+      bootstrap: ami-e7da6483
+      opsman: ami-dd0eb1b9
     eu-central-1:
-      "64": ami-ec0aaa83
+      bootstrap: ami-dc903eb3
+      opsman: ami-e565c98a
     eu-west-1:
-      "64": ami-0eca2a77
+      bootstrap: ami-6808fe11
+      opsman: ami-1f2ec566
     eu-west-2:
-      "64": ami-fffaec9b
+      bootstrap: ami-c0cfdea4
+      opsman: ami-7b1e0f1f
     sa-east-1:
-      "64": ami-ba4f3ad6
+      bootstrap: ami-769ee81a
+      opsman: ami-6ba5d207
     us-east-1:
-      "64": ami-2f000639
+      bootstrap: ami-ebd1fe90
+      opsman: ami-dae3bca1
     us-east-2:
-      "64": ami-f6f8d993
+      bootstrap: ami-72d0f017
+      opsman: ami-32341457
     us-west-1:
-      "64":  ami-f7ac8397
+      bootstrap: ami-c90229a9
+      opsman: ami-6b4d650b
     us-west-2:
-      "64": ami-3b617342
-  BootstrapAMI:
-    ap-northeast-1:
-      '64': ami-e130de87
-    ap-northeast-2:
-      '64': ami-95e23bfb
-    ap-south-1:
-      '64': ami-5abcc735
-    ap-southeast-1:
-      '64': ami-1b1c8378
-    ap-southeast-2:
-      '64': ami-d5938db6
-    ca-central-1:
-      '64': ami-10ec5274
-    eu-central-1:
-      '64': ami-7b74db14
-    eu-west-1:
-      '64': ami-1cea1e65
-    eu-west-2:
-      '64': ami-63273607
-    sa-east-1:
-      '64': ami-c11a6cad
-    us-east-1:
-      '64': ami-bcd6f0c7
-    us-east-2:
-      '64': ami-9de2c2f8
-    us-west-1:
-      '64': ami-e2b99182
-    us-west-2:
-      '64': ami-ffdf3887
+      bootstrap: ami-8d01e0f5
+      opsman: ami-ca879db3
 Resources:
   ## cloud-formation.json
   PCFBase:
@@ -344,7 +328,7 @@ Resources:
               - logs:CreateLogStream
               - logs:PutLogEvents
               - logs:DescribeLogStreams
-            Resource: "arn:aws:logs:*:*:*"
+            Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:pcf-bootstrap-${AWS::StackName}:*"
       PolicyName: !Sub ${AWS::StackName}-emit-logs-policy
       Roles:
         - !GetAtt PCFBase.Outputs.PcfIamRole
@@ -593,7 +577,7 @@ Resources:
   OpsManagerInstance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: !FindInMap [OpsManagerAMI, !Ref "AWS::Region", 64]
+      ImageId: !FindInMap [AMIMapping, !Ref "AWS::Region", "opsman"]
       InstanceType: m4.large
       IamInstanceProfile: !GetAtt PCFBase.Outputs.PcfIamInstanceProfile
       KeyName: !Ref PCFKeyPair
@@ -621,7 +605,7 @@ Resources:
         Timeout: PT30M
     DependsOn: OpsManagerInstance
     Properties:
-      ImageId: !FindInMap [BootstrapAMI, !Ref "AWS::Region", 64]
+      ImageId: !FindInMap [AMIMapping, !Ref "AWS::Region", "bootstrap"]
       InstanceType: t2.micro
       IamInstanceProfile: !GetAtt PCFBase.Outputs.PcfIamInstanceProfile
       KeyName: !Ref PCFKeyPair
@@ -645,7 +629,6 @@ Resources:
       UserData: !Base64
         "Fn::Sub": |
           #!/bin/bash
-          set -x
 
           cfn-init -v --stack ${AWS::StackName} --resource BootstrapInstance --region ${AWS::Region}
           cfn-signal -e $? --stack ${AWS::StackName} --resource BootstrapInstance --region ${AWS::Region}
@@ -721,7 +704,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
-      Name: !Join [ "", [ "opsman.", !Ref Domain] ]
+      Name: !Sub opsman.${Domain}
       ResourceRecords:
         - !Sub "${OpsManagerInstance.PublicIp}"
       TTL: 60
@@ -730,7 +713,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
-      Name: !Join [ "", [ "bootstrap.", !Ref Domain] ]
+      Name: !Sub bootstrap.${Domain}
       ResourceRecords:
         - !Sub "${BootstrapInstance.PublicIp}"
       TTL: 60
@@ -739,7 +722,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
-      Name: !Join [ "", [ "*.", !Ref Domain] ]
+      Name: !Sub "*.${Domain}"
       ResourceRecords:
         - !GetAtt PCFBase.Outputs.PcfElbDnsName
       TTL: 60
@@ -748,7 +731,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
-      Name: !Join [ "", [ "ssh.sys.", !Ref Domain] ]
+      Name: !Sub ssh.sys.${Domain}
       ResourceRecords:
         - !GetAtt PCFBase.Outputs.PcfElbSshDnsName
       TTL: 60
@@ -757,7 +740,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
-      Name: !Join [ "", [ "*.sys.", !Ref Domain] ]
+      Name: !Sub "*.sys.${Domain}"
       ResourceRecords:
         - !GetAtt PCFBase.Outputs.PcfElbDnsName
       TTL: 60
@@ -766,7 +749,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
-      Name: !Join [ "", [ "*.apps.", !Ref Domain] ]
+      Name: !Sub "*.apps.${Domain}"
       ResourceRecords:
         - !GetAtt PCFBase.Outputs.PcfElbDnsName
       TTL: 60
@@ -774,4 +757,4 @@ Resources:
 Outputs:
   OpsManager:
     Description: Url For Logging into OpsManager
-    Value: !Join [ "", [ "https://opsman.", !Ref Domain] ]
+    Value: !Sub "https://opsman.${Domain}"
