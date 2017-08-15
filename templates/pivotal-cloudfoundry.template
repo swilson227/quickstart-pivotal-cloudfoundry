@@ -236,46 +236,46 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-fb59b29d
+      bootstrap: ami-9956a0ff
       opsman: ami-68b3460e
     ap-northeast-2:
-      bootstrap: ami-7621f818
+      bootstrap: ami-bc8d55d2
       opsman: ami-894990e7
     ap-south-1:
-      bootstrap: ami-09334966
+      bootstrap: ami-4bf58f24
       opsman: ami-64017b0b
     ap-southeast-1:
-      bootstrap: ami-23d54d40
+      bootstrap: ami-b6aacfd5
       opsman: ami-9c059dff
     ap-southeast-2:
-      bootstrap: ami-61c9d002
+      bootstrap: ami-069b8365
       opsman: ami-b3bba2d0
     ca-central-1:
-      bootstrap: ami-e7da6483
+      bootstrap: ami-6eb10f0a
       opsman: ami-38ce705c
     eu-central-1:
-      bootstrap: ami-dc903eb3
+      bootstrap: ami-f515bc9a
       opsman: ami-51349a3e
     eu-west-1:
-      bootstrap: ami-6808fe11
+      bootstrap: ami-6520d21c
       opsman: ami-ac07f6d5
     eu-west-2:
-      bootstrap: ami-c0cfdea4
+      bootstrap: ami-d7b7a6b3
       opsman: ami-a9e0f1cd
     sa-east-1:
-      bootstrap: ami-769ee81a
+      bootstrap: ami-0ebacb62
       opsman: ami-8ad0a6e6
     us-east-1:
-      bootstrap: ami-ebd1fe90
+      bootstrap: ami-ef261594
       opsman: ami-0bfed670
     us-east-2:
-      bootstrap: ami-72d0f017
+      bootstrap: ami-d59ebeb0
       opsman: ami-74a68611
     us-west-1:
-      bootstrap: ami-c90229a9
+      bootstrap: ami-4e32182e
       opsman: ami-22cce742
     us-west-2:
-      bootstrap: ami-8d01e0f5
+      bootstrap: ami-49b15c31
       opsman: ami-e626c69e
 Resources:
   ## cloud-formation.json
