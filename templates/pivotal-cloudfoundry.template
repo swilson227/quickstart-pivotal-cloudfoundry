@@ -31,6 +31,7 @@ Metadata:
         - PivnetToken
         - AdminEmail
         - OpsManagerAdminPassword
+        - CompanyName
       - Label:
           default: RDS
         Parameters:
@@ -64,7 +65,7 @@ Metadata:
       OpsManagerAdminPassword:
         default: Ops Manager Admin Password
       OpsManagerIngress:
-        default: Ops Manager Ingress
+        default: Ops Manager & Bootstrap Ingress
       HostedZoneId:
         default: Route 53 Hosted Zone ID
       Domain:
@@ -87,6 +88,8 @@ Metadata:
         default: Quick Start S3 Bucket Prefix
       AcceptEULA:
         default: Accept EULA
+      CompanyName:
+        default: Custom Branding Company Name
 
 Parameters:
   NATInstanceType:
@@ -107,8 +110,7 @@ Parameters:
     Description: Select the Instance Type to use for the NAT vm
   OpsManagerIngress:
     Type: String
-    Default: 0.0.0.0/0
-    Description: CIDR range allowed to connect to Pivotal Ops Manager instance
+    Description: CIDR range allowed to connect to Pivotal Ops Manager and Bootstrap instances
   RdsDBName:
     Type: String
     MinLength: '4'
@@ -200,6 +202,11 @@ Parameters:
     AllowedValues:
     - 'No'
     - 'Yes'
+  CompanyName:
+    Description: Custom Branding Company Name for Apps Manager
+    Type: String
+    Default: 'PCF Quickstart'
+
 
 Rules:
   KeyPairsNotEmpty:
@@ -214,10 +221,10 @@ Rules:
       Assertions:
       - Assert:
           Fn::Contains:
-          - [us-east-1, us-west-1, us-west-2, eu-west-1, ap-southeast-1, ap-northeast-1, ap-northeast-2, sa-east-1, eu-central-1, ap-southeast-2]
+          - [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, ap-northeast-2, sa-east-1]
 
           - !Ref AWS::Region
-        AssertDescription: This Quick Start is only available in a subset of regions. [us-east-1, us-west-1, us-west-2, eu-west-1, ap-southeast-1, ap-northeast-1, ap-northeast-2, sa-east-1, eu-central-1, ap-southeast-2]
+        AssertDescription: This Quick Start is only available in a subset of regions. [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, ap-northeast-2, sa-east-1]
 
   AcceptEULARule:
     Assertions:
@@ -230,46 +237,46 @@ Mappings:
   AMIMapping:
     ap-northeast-1:
       bootstrap: ami-fb59b29d
-      opsman: ami-bb54b6dd
+      opsman: ami-68b3460e
     ap-northeast-2:
       bootstrap: ami-7621f818
-      opsman: ami-24a57c4a
+      opsman: ami-894990e7
     ap-south-1:
       bootstrap: ami-09334966
-      opsman: ami-12c0b87d
+      opsman: ami-64017b0b
     ap-southeast-1:
       bootstrap: ami-23d54d40
-      opsman: ami-22f06d41
+      opsman: ami-9c059dff
     ap-southeast-2:
       bootstrap: ami-61c9d002
-      opsman: ami-96b5aaf5
+      opsman: ami-b3bba2d0
     ca-central-1:
       bootstrap: ami-e7da6483
-      opsman: ami-dd0eb1b9
+      opsman: ami-38ce705c
     eu-central-1:
       bootstrap: ami-dc903eb3
-      opsman: ami-e565c98a
+      opsman: ami-51349a3e
     eu-west-1:
       bootstrap: ami-6808fe11
-      opsman: ami-1f2ec566
+      opsman: ami-ac07f6d5
     eu-west-2:
       bootstrap: ami-c0cfdea4
-      opsman: ami-7b1e0f1f
+      opsman: ami-a9e0f1cd
     sa-east-1:
       bootstrap: ami-769ee81a
-      opsman: ami-6ba5d207
+      opsman: ami-8ad0a6e6
     us-east-1:
       bootstrap: ami-ebd1fe90
-      opsman: ami-dae3bca1
+      opsman: ami-0bfed670
     us-east-2:
       bootstrap: ami-72d0f017
-      opsman: ami-32341457
+      opsman: ami-74a68611
     us-west-1:
       bootstrap: ami-c90229a9
-      opsman: ami-6b4d650b
+      opsman: ami-22cce742
     us-west-2:
       bootstrap: ami-8d01e0f5
-      opsman: ami-ca879db3
+      opsman: ami-e626c69e
 Resources:
   ## cloud-formation.json
   PCFBase:
@@ -448,7 +455,8 @@ Resources:
         "PcfElbSshDnsName": "${PCFBase.Outputs.PcfElbSshDnsName}",
         "PcfElasticRuntimeS3BuildpacksBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3BuildpacksBucket}",
         "PcfOpsManagerSecurityGroupId": "${PCFBase.Outputs.PcfOpsManagerSecurityGroupId}",
-        "PcfRdsUsername": "${PCFBase.Outputs.PcfRdsUsername}"
+        "PcfRdsUsername": "${PCFBase.Outputs.PcfRdsUsername}",
+        "PcfCompanyName": "${CompanyName}"
         }
   ## This is the End of our Secured Parameters
   ## This is the EC2 Ops Manager
