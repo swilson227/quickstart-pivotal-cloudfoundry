@@ -1,11 +1,8 @@
-#quickstart-pivotal-cloudfoundry
+# quickstart-pivotal-cloudfoundry
 
-Launch PCF on AWS with a single click.
+See 
+https://github.com/cf-platform-eng/aws-pcf-quickstart
+for launch instructions
 
-For more information visit https://github.com/cf-platform-eng/aws-pcf-quickstart/blob/master/README.md
-
-# Dev
-Don't forget to initialize submodules
-```bash
-git submodule update --init --recursive 
-```
+We do not accept pull requests on this repo, all changes should go to
+https://github.com/cf-platform-eng/aws-pcf-quickstart
