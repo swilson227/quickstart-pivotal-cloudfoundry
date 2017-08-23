@@ -1,0 +1,3 @@
+[submodule "scripts/quickstart"]
+	path = scripts/quickstart
+	url = https://github.com/cf-platform-eng/quickstart
