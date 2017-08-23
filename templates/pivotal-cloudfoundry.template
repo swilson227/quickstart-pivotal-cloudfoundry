@@ -353,6 +353,11 @@ Resources:
         Ref: "WaitHandle"
       Timeout: "14400"
       Count: 1
+  PcfIamUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !GetAtt PCFBase.Outputs.PcfIamUserName
+
   ## This Policy is for Allowing the OpsManager EC2 Instance access to the Describe stack and
   ## Stored Parameters.
   PCFDescribeStackPolicy:
@@ -423,7 +428,7 @@ Resources:
       Type: String
       Value: !Sub |
         {
-        "PcfRdsPassword": "${PCFBase.Outputs.PcfRdsPassword}",
+        "PcfRdsPassword": "${RdsPassword}",
         "PcfPublicSubnetId2": "${PCFBase.Outputs.PcfPublicSubnetId2}",
         "PcfElasticRuntimeS3PackagesBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3PackagesBucket}",
         "PcfNumberOfAZs": "${NumberOfAZs}",
@@ -435,7 +440,6 @@ Resources:
         "PcfIamUserName": "${PCFBase.Outputs.PcfIamUserName}",
         "PcfPublicSubnetAvailabilityZone2": "${PCFBase.Outputs.PcfPublicSubnetAvailabilityZone2}",
         "PcfPrivateSubnetId": "${PCFBase.Outputs.PcfPrivateSubnetId}",
-        "PcfIamUserAccessKey": "${PCFBase.Outputs.PcfIamUserAccessKey}",
         "PcfPublicSubnetId": "${PCFBase.Outputs.PcfPublicSubnetId}",
         "PcfRdsDBName": "${PCFBase.Outputs.PcfRdsDBName}",
         "PcfVmsSecurityGroupId": "${PCFBase.Outputs.PcfVmsSecurityGroupId}",
@@ -451,7 +455,8 @@ Resources:
         "PcfVpc": "${PCFBase.Outputs.PcfVpc}",
         "PcfElasticRuntimeS3DropletsBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3DropletsBucket}",
         "PcfPrivateSubnet2Id": "${PCFBase.Outputs.PcfPrivateSubnet2Id}",
-        "PcfIamUserSecretAccessKey": "${PCFBase.Outputs.PcfIamUserSecretAccessKey}",
+        "PcfIamUserAccessKey": "${PcfIamUserAccessKey}",
+        "PcfIamUserSecretAccessKey": "${PcfIamUserAccessKey.SecretAccessKey}",
         "PcfElbSshDnsName": "${PCFBase.Outputs.PcfElbSshDnsName}",
         "PcfElasticRuntimeS3BuildpacksBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3BuildpacksBucket}",
         "PcfOpsManagerSecurityGroupId": "${PCFBase.Outputs.PcfOpsManagerSecurityGroupId}",
