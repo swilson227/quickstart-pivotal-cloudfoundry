@@ -19,3 +19,6 @@ global:
     - us-west-2
   reporting: true
 tests:
+  defaults:
+    parameter_input: defaults.json
+    template_file: pivotal-cloudfoundry.template
