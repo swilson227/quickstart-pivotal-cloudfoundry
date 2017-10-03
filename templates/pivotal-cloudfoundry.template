@@ -42,7 +42,7 @@ Metadata:
       - QSS3BucketName
       - QSS3KeyPrefix
     - Label:
-        default: End User License Agreement
+        default: Pivotal's End User License Agreement
       Parameters:
       - AcceptEULA
     ParameterLabels:
@@ -125,7 +125,8 @@ Parameters:
     Description: Database password
   SSLCertificateARN:
     Type: String
-    Description: ARN for pre-uploaded SSL certificate
+    Description: ARN for pre-uploaded SSL certificate.
+      The certificate should cover *.pcf_domain, *.sys.pcf_domain, *.apps.pcf_domain, *.login.pcf_domain, and *.uaa.pcf_domain
   ElbPrefix:
     Type: String
     Description: Prefix for the name of the ELBs provisioned. (Required)
@@ -171,11 +172,11 @@ Parameters:
     Description: Select number of Availability Zones. This changes the deployment
       size. 2 is a HA deployment, with nearly double the number of VMs
   ForwardLogOutput:
-    Description: When true, installation logs are sent to 'CloudWatch Logs'. Critical
+    Description: When true, installation logs are sent to 'CloudWatch Logs'. Very useful
       for solving failures, but potentially exposes secrets used during the bootstrap
       process.
     Type: String
-    Default: 'true'
+    Default: 'false'
     AllowedValues:
     - 'true'
     - 'false'
@@ -206,7 +207,7 @@ Parameters:
       forward slash (/).
     Type: String
   AcceptEULA:
-    Description: https://pivotal.io/evaluation-agreement
+    Description: By toggling 'Yes' above, you are affirming that you have reviewed and agree that your use of the software will be governed by the terms available at https://pivotal.io/evaluation-agreement
     Type: String
     Default: 'No'
     AllowedValues:
@@ -448,7 +449,7 @@ Resources:
         "PcfOpsManagerAdminPassword": "${OpsManagerAdminPassword}",
         "PcfRdsAddress": "${PCFBase.Outputs.PcfRdsAddress}",
         "PcfElbDnsName": "${PCFBase.Outputs.PcfElbDnsName}",
-        "PcfOpsManagerInstanceIP": "${OpsManagerInstance.PublicIp}",
+        "PcfOpsManagerInstanceIP": "${OpsManagerEIP}",
         "PcfPrivateSubnetAvailabilityZone": "${PCFBase.Outputs.PcfPrivateSubnetAvailabilityZone}",
         "PcfCustomResourceSQSQueueUrl": "${CustomResourceSQSQueue}",
         "PcfVpc": "${PCFBase.Outputs.PcfVpc}",
@@ -597,13 +598,23 @@ Resources:
               command: cp /home/ubuntu/quickstart/version_config.json /var/local/version_config.json
             d_install_delete_daemon:
               command: /home/ubuntu/quickstart/daemon/install.sh
+  OpsManagerEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref OpsManagerInstance
+      Domain: vpc
+  BootstrapEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref BootstrapInstance
+      Domain: vpc
   DNSOpsMan:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId: !Ref HostedZoneId
       Name: !Sub opsman.${Domain}
       ResourceRecords:
-      - !Sub ${OpsManagerInstance.PublicIp}
+      - !Ref OpsManagerEIP
       TTL: 60
       Type: A
   DNS:
@@ -612,7 +623,7 @@ Resources:
       HostedZoneId: !Ref HostedZoneId
       Name: !Sub bootstrap.${Domain}
       ResourceRecords:
-      - !Sub ${BootstrapInstance.PublicIp}
+      - !Ref BootstrapEIP
       TTL: 60
       Type: A
   DNSStar:
