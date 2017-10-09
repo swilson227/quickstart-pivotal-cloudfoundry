@@ -184,6 +184,7 @@ Parameters:
     Description: When true, SSL certificates are not validated. *Not recommended for
       a production environment*
     Type: String
+    Default: 'false'
     AllowedValues:
     - 'true'
     - 'false'
@@ -307,7 +308,6 @@ Resources:
   CustomResourceSQSQueue:
     Type: AWS::SQS::Queue
     Properties:
-      QueueName: CustomResourceSQSQueue
       VisibilityTimeout: 1
   CustomResourceSNSTopic:
     Type: AWS::SNS::Topic
@@ -592,11 +592,14 @@ Resources:
                 else
                   echo "Skipping CloudWatch Logs, ForwardLogOutput was false"
                 fi
-            b_chmod_stuff:
+            b_etc_hosts_override:
+              command: !Sub
+                echo "${OpsManagerInstance.PrivateIp} opsman.${Domain}" >> /etc/hosts
+            c_chmod_stuff:
               command: chown -R ubuntu:ubuntu /home/ubuntu/quickstart
-            c_copy_version_confifg_to_known_location:
+            d_copy_version_confifg_to_known_location:
               command: cp /home/ubuntu/quickstart/version_config.json /var/local/version_config.json
-            d_install_delete_daemon:
+            e_install_delete_daemon:
               command: /home/ubuntu/quickstart/daemon/install.sh
   OpsManagerEIP:
     Type: AWS::EC2::EIP
