@@ -24,7 +24,7 @@ Metadata:
     - Label:
         default: Pivotal Cloud Foundry Configuration
       Parameters:
-      - NumberOfAZs
+      - DeploymentSize
       - SkipSSLValidation
       - PivnetToken
       - AdminEmail
@@ -52,8 +52,8 @@ Metadata:
         default: RDS Username
       RdsPassword:
         default: RDS Password
-      NumberOfAZs:
-        default: Number of Availability Zones
+      DeploymentSize:
+        default: Size of the Deployment
       SkipSSLValidation:
         default: Skip SSL Validation
       PivnetToken:
@@ -163,14 +163,13 @@ Parameters:
   PCFKeyPair:
     Type: AWS::EC2::KeyPair::KeyName
     Description: Select the SSH keypair to use for Pivotal Ops Manager and NAT instance
-  NumberOfAZs:
-    Type: Number
+  DeploymentSize:
+    Type: String
     AllowedValues:
-    - 1
-    - 2
-    Default: 1
-    Description: Select number of Availability Zones. This changes the deployment
-      size. 2 is a HA deployment, with nearly double the number of VMs
+    - Starter
+    - Multi-AZ
+    Description: Select the initial deployment size. Starter creates a single instance for most job VMs.
+      Multi-AZ is a HA deployment across 2 availability zones.
   ForwardLogOutput:
     Description: When true, installation logs are sent to 'CloudWatch Logs'. Very useful
       for solving failures, but potentially exposes secrets used during the bootstrap
@@ -246,46 +245,46 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-3b975f5d
+      bootstrap: ami-622c8c04
       opsman: ami-2ce72d4a
     ap-northeast-2:
-      bootstrap: ami-d19b41bf
+      bootstrap: ami-d619bcb8
       opsman: ami-95b268fb
     ap-south-1:
-      bootstrap: ami-e9bff986
+      bootstrap: ami-9c014cf3
       opsman: ami-a21253cd
     ap-southeast-1:
-      bootstrap: ami-14611077
+      bootstrap: ami-98cd8dfb
       opsman: ami-e1ddad82
     ap-southeast-2:
-      bootstrap: ami-9343a5f1
+      bootstrap: ami-40d63922
       opsman: ami-1ad73678
     ca-central-1:
-      bootstrap: ami-7e962f1a
+      bootstrap: ami-b475cdd0
       opsman: ami-2d7fc649
     eu-central-1:
-      bootstrap: ami-696fde06
+      bootstrap: ami-e5d3698a
       opsman: ami-ca8838a5
     eu-west-1:
-      bootstrap: ami-e76ca39e
+      bootstrap: ami-fbb01482
       opsman: ami-393ef740
     eu-west-2:
-      bootstrap: ami-39feed5d
+      bootstrap: ami-88b7aaec
       opsman: ami-3f8a995b
     sa-east-1:
-      bootstrap: ami-97c4b9fb
+      bootstrap: ami-4d6e1621
       opsman: ami-6d691501
     us-east-1:
-      bootstrap: ami-f5fc178f
+      bootstrap: ami-77d7770d
       opsman: ami-b06a9dca
     us-east-2:
-      bootstrap: ami-3e93b15b
+      bootstrap: ami-1f69467a
       opsman: ami-3b765b5e
     us-west-1:
-      bootstrap: ami-0f3d0c6f
+      bootstrap: ami-4f14282f
       opsman: ami-55c9f835
     us-west-2:
-      bootstrap: ami-bd59a5c5
+      bootstrap: ami-0225eb7a
       opsman: ami-2be41a53
 Resources:
   PCFBase:
@@ -431,7 +430,7 @@ Resources:
         "PcfRdsPassword": "${RdsPassword}",
         "PcfPublicSubnetId2": "${PCFBase.Outputs.PcfPublicSubnetId2}",
         "PcfElasticRuntimeS3PackagesBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3PackagesBucket}",
-        "PcfNumberOfAZs": "${NumberOfAZs}",
+        "PcfDeploymentSize": "${DeploymentSize}",
         "PcfPublicSubnetAvailabilityZone": "${PCFBase.Outputs.PcfPublicSubnetAvailabilityZone}",
         "PcfIamRole": "${PCFBase.Outputs.PcfIamRole}",
         "PcfElasticRuntimeS3ResourcesBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3ResourcesBucket}",
