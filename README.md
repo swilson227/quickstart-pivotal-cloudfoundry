@@ -20,4 +20,5 @@ You can also use the AWS CloudFormation templates as a starting point for your o
 For architectural details, step-by-step instructions, and customization options, see the [deployment guide](https://s3.amazonaws.com/quickstart-reference/pivotal/cloudfoundry/latest/doc/pivotal-cloud-foundry-on-the-aws-cloud.pdf).
 
 To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo.
-If you'd like to submit code for this Quick Start, please review the [AWS Quick Start Contributor's Kit](https://aws-quickstart.github.io/). 
+
+We do not accept pull requests on this repo; please submit all changes to https://github.com/cf-platform-eng/aws-pcf-quickstart.
