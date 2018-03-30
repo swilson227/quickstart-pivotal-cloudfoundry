@@ -192,7 +192,7 @@ Parameters:
     ConstraintDescription: Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen
       (-).
-    Default: quickstart-reference
+    Default: aws-quickstart
     Description: S3 bucket name for the Quick Start assets. This string can include
       numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start
       or end with a hyphen (-).
@@ -201,7 +201,7 @@ Parameters:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slash (/).
-    Default: pivotal/cloudfoundry/latest/
+    Default: quickstart-pivotal-cloudfoundry/
     Description: S3 key prefix for the Quick Start assets. Quick Start key prefix
       can include numbers, lowercase letters, uppercase letters, hyphens (-), and
       forward slash (/).
@@ -245,47 +245,51 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-622c8c04
-      opsman: ami-2ce72d4a
+      bootstrap: ami-ec8dc18a
+      opsman: ami-15015473
     ap-northeast-2:
-      bootstrap: ami-d619bcb8
-      opsman: ami-95b268fb
+      bootstrap: ami-1314b97d
+      opsman: ami-929a36fc
     ap-south-1:
-      bootstrap: ami-9c014cf3
-      opsman: ami-a21253cd
+      bootstrap: ami-b783ddd8
+      opsman: ami-60ebb20f
     ap-southeast-1:
-      bootstrap: ami-98cd8dfb
-      opsman: ami-e1ddad82
+      bootstrap: ami-e7dc889b
+      opsman: ami-6cb1e110
     ap-southeast-2:
-      bootstrap: ami-40d63922
-      opsman: ami-1ad73678
+      bootstrap: ami-c69050a4
+      opsman: ami-c35390a1
     ca-central-1:
-      bootstrap: ami-b475cdd0
-      opsman: ami-2d7fc649
+      bootstrap: ami-ae49ceca
+      opsman: ami-0a1c9b6e
     eu-central-1:
-      bootstrap: ami-e5d3698a
-      opsman: ami-ca8838a5
+      bootstrap: ami-7d5a3412
+      opsman: ami-a27b10cd
     eu-west-1:
-      bootstrap: ami-fbb01482
-      opsman: ami-393ef740
+      bootstrap: ami-7214560b
+      opsman: ami-263d755f
     eu-west-2:
-      bootstrap: ami-88b7aaec
-      opsman: ami-3f8a995b
+      bootstrap: ami-bdf116da
+      opsman: ami-b850b7df
+    eu-west-3:
+      bootstrap: ami-0b68de76
+      opsman: ami-3f45f342
     sa-east-1:
-      bootstrap: ami-4d6e1621
-      opsman: ami-6d691501
+      bootstrap: ami-0632786a
+      opsman: ami-24401548
     us-east-1:
-      bootstrap: ami-77d7770d
-      opsman: ami-b06a9dca
+      bootstrap: ami-05fd0378
+      opsman: ami-b024e6cd
     us-east-2:
-      bootstrap: ami-1f69467a
-      opsman: ami-3b765b5e
+      bootstrap: ami-856c5ae0
+      opsman: ami-7cc0f619
     us-west-1:
-      bootstrap: ami-4f14282f
-      opsman: ami-55c9f835
+      bootstrap: ami-b55d48d5
+      opsman: ami-622d3902
     us-west-2:
-      bootstrap: ami-0225eb7a
-      opsman: ami-2be41a53
+      bootstrap: ami-5269fd2a
+      opsman: ami-9ef467e6
+
 Resources:
   PCFBase:
     Type: AWS::CloudFormation::Stack
