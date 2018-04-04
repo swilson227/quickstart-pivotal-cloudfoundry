@@ -17,7 +17,7 @@ You can also use the AWS CloudFormation templates as a starting point for your o
 
 ![Quick Start architecture for PCF on AWS](https://d0.awsstatic.com/partner-network/QuickStart/datasheets/pcf-on-aws-architecture-multi-az.png)
 
-For architectural details, step-by-step instructions, and customization options, see the [deployment guide](https://s3.amazonaws.com/quickstart-reference/pivotal/cloudfoundry/latest/doc/pivotal-cloud-foundry-on-the-aws-cloud.pdf).
+For architectural details, step-by-step instructions, and customization options, see the [deployment guide](https://fwd.aws/wbrj3).
 
 To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo.
 
