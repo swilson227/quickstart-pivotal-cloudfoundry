@@ -212,10 +212,10 @@ Rules:
       Assertions:
       - Assert:
           Fn::Contains:
-          - [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-2]
+          - [us-east-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-2, ap-northeast-1]
 
           - !Ref AWS::Region
-        AssertDescription: This Quick Start is only available in a subset of regions. [us-east-1, us-west-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-2]
+        AssertDescription: This Quick Start is only available in a subset of regions. [us-east-1, us-west-2, eu-central-1, eu-west-1, ap-southeast-2, ap-northeast-1]
 
   AcceptEULARule:
     Assertions:
@@ -227,49 +227,49 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-0d9d0d856867f1d9f
+      bootstrap: ami-0c065a47cccb84207
       opsman: ami-2330c65c
     ap-northeast-2:
-      bootstrap: ami-0821f6a52440fa647
+      bootstrap: ami-044685d4f9fa42bba
       opsman: ami-57862e39
     ap-south-1:
-      bootstrap: ami-0b19db81f691511eb
+      bootstrap: ami-0348b03e4e1a325d2
       opsman: ami-c65578a9
     ap-southeast-1:
-      bootstrap: ami-034aadf7eb7138bfa
+      bootstrap: ami-00fa1114699b38da8
       opsman: ami-8edfeef2
     ap-southeast-2:
-      bootstrap: ami-0438ee9adde4d167d
+      bootstrap: ami-08e523c6c07b2d3f5
       opsman: ami-0eca1b6c
     ca-central-1:
-      bootstrap: ami-04c6395d0d65d5195
+      bootstrap: ami-0c6abeeebd460fdc1
       opsman: ami-735ada17
     eu-central-1:
-      bootstrap: ami-0bcb730d3f6e731b2
+      bootstrap: ami-0546e0abcba49217f
       opsman: ami-ec735d07
     eu-west-1:
-      bootstrap: ami-0808a0af9ebd2f13e
+      bootstrap: ami-0c764f8c54088cc78
       opsman: ami-36c3f04f
     eu-west-2:
-      bootstrap: ami-0f8dc32af61acc002
+      bootstrap: ami-09bf5e3e0c3d4bb56
       opsman: ami-01d43966
     eu-west-3:
-      bootstrap: ami-0d75e6ae161dd58f2
+      bootstrap: ami-0ba130fe2d73d66a6
       opsman: ami-e672c39b
     sa-east-1:
-      bootstrap: ami-0bf09cec712551fb8
+      bootstrap: ami-0c99a08fb0c8357de
       opsman: ami-86cf93ea
     us-east-1:
-      bootstrap: ami-00b7423c27ff5f230
+      bootstrap: ami-07dcf0f8fc0e172f9
       opsman: ami-e1d8489e
     us-east-2:
-      bootstrap: ami-02ec6158ebaf9abe3
+      bootstrap: ami-0fe088ebab4616aff
       opsman: ami-3781bc52
     us-west-1:
-      bootstrap: ami-08dfc0e3c435a40f9
+      bootstrap: ami-089026ae85d52c62a
       opsman: ami-4af0e92a
     us-west-2:
-      bootstrap: ami-057d1c04d7bb33747
+      bootstrap: ami-0f5d0af50d0342fdf
       opsman: ami-ad0a77d5
 
 Resources:
