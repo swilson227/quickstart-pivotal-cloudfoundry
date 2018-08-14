@@ -227,50 +227,50 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-095d731604206928b
-      opsman: ami-2330c65c
+      bootstrap: ami-0a06b9256876303c3
+      opsman: ami-4f7b12a2
     ap-northeast-2:
-      bootstrap: ami-02242b827f89ae861
-      opsman: ami-57862e39
+      bootstrap: ami-0d42dc8243cf62850
+      opsman: ami-18b70076
     ap-south-1:
-      bootstrap: ami-068864d4969ec3785
-      opsman: ami-c65578a9
+      bootstrap: ami-05f6c14b0c04bfd87
+      opsman: ami-ee81b181
     ap-southeast-1:
-      bootstrap: ami-06b9ebf6a1b52d985
-      opsman: ami-8edfeef2
+      bootstrap: ami-08437bf384f79e40b
+      opsman: ami-772f6a9d
     ap-southeast-2:
-      bootstrap: ami-087e1e35699105154
-      opsman: ami-0eca1b6c
+      bootstrap: ami-0a6ab30edb6ca775d
+      opsman: ami-6105a103
     ca-central-1:
-      bootstrap: ami-059c81bced2b61e19
-      opsman: ami-735ada17
+      bootstrap: ami-04fac06d885abc754
+      opsman: ami-01890465
     eu-central-1:
-      bootstrap: ami-01c88d04c37c7865a
-      opsman: ami-ec735d07
+      bootstrap: ami-0d7fd234799762ba8
+      opsman: ami-8726276c
     eu-west-1:
-      bootstrap: ami-008e901e5420852ef
-      opsman: ami-36c3f04f
+      bootstrap: ami-01b090881aef92cbe
+      opsman: ami-66657b8c
     eu-west-2:
-      bootstrap: ami-0820397adfbba62e7
-      opsman: ami-01d43966
+      bootstrap: ami-0b2e3b7ead533515d
+      opsman: ami-00688367
     eu-west-3:
-      bootstrap: ami-0d25c9b75a06aeef8
-      opsman: ami-e672c39b
+      bootstrap: ami-0d5c0bd5e6e9f9702
+      opsman: ami-249a2a59
     sa-east-1:
-      bootstrap: ami-001ced58272885782
-      opsman: ami-86cf93ea
+      bootstrap: ami-06cd97f7e1336cc7b
+      opsman: ami-57f9df3b
     us-east-1:
-      bootstrap: ami-08350da7d75b3140c
-      opsman: ami-e1d8489e
+      bootstrap: ami-0020179e3520eccb8
+      opsman: ami-4dcdf632
     us-east-2:
-      bootstrap: ami-04d109c907c4ec3db
-      opsman: ami-3781bc52
+      bootstrap: ami-05dfeecd690cf723a
+      opsman: ami-72784217
     us-west-1:
-      bootstrap: ami-0a6dcff098d26b778
-      opsman: ami-4af0e92a
+      bootstrap: ami-0c50158fb2e4a2809
+      opsman: ami-2719fb44
     us-west-2:
-      bootstrap: ami-01d07971a5570ed1d
-      opsman: ami-ad0a77d5
+      bootstrap: ami-0d8e79352883c9bd8
+      opsman: ami-2893cf50
 
 Resources:
   PCFBase:
