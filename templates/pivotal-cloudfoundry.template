@@ -227,49 +227,49 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-0481c58a3e86fb3dc
+      bootstrap: ami-0746e6c9ebe097228
       opsman: ami-0f343950081f2a497
     ap-northeast-2:
-      bootstrap: ami-043e200822dc46c36
+      bootstrap: ami-04a24ccfd524ff29f
       opsman: ami-0d51e3204fbbf9376
     ap-south-1:
-      bootstrap: ami-0f1121d3e371553aa
+      bootstrap: ami-0bd1eec87670bcd48
       opsman: ami-046281a830cfdb371
     ap-southeast-1:
-      bootstrap: ami-0303f99985d9130d3
+      bootstrap: ami-014e3c574b31c599c
       opsman: ami-00ce9e04ab82343bd
     ap-southeast-2:
-      bootstrap: ami-0679123c583e2c17a
+      bootstrap: ami-04a1dc043ca0bdf49
       opsman: ami-0c3792b8e1f12430c
     ca-central-1:
-      bootstrap: ami-0a8013e056eceb0db
+      bootstrap: ami-0a716bd67e255a961
       opsman: ami-09f0ae80f84cc3d42
     eu-central-1:
-      bootstrap: ami-085f53bb464be3ae7
+      bootstrap: ami-026b30b92bbba947b
       opsman: ami-0af2fd2dd7d237eb0
     eu-west-1:
-      bootstrap: ami-0adcb9792f2b6c2e0
+      bootstrap: ami-09ca2e8a6b1ebbde1
       opsman: ami-042cf2befd439635c
     eu-west-2:
-      bootstrap: ami-062b6ec5a04ce544e
+      bootstrap: ami-0e8b220931add6386
       opsman: ami-0f1e79c6790ded80e
     eu-west-3:
-      bootstrap: ami-00e42f88f85cbda00
+      bootstrap: ami-043e526de7f60d365
       opsman: ami-0b34d63ea9067cce5
     sa-east-1:
-      bootstrap: ami-01d232143c06f5442
+      bootstrap: ami-023ed48b27f436e4b
       opsman: ami-0dbb1971d3950ef2c
     us-east-1:
-      bootstrap: ami-0098606a0956554c0
+      bootstrap: ami-0f383d80f9cded690
       opsman: ami-07256b9d765d56df9
     us-east-2:
-      bootstrap: ami-08f1af2461df99e0e
+      bootstrap: ami-0c0ed1d2926f8b5ea
       opsman: ami-08fb5965e9b729726
     us-west-1:
-      bootstrap: ami-02efda0119d82ed48
+      bootstrap: ami-045090fe700fbb40f
       opsman: ami-06ed586006e904651
     us-west-2:
-      bootstrap: ami-0294458d537ebda6b
+      bootstrap: ami-0fee2a669a7bfc348
       opsman: ami-0ae9c5289b7930896
 
 Resources:
@@ -359,6 +359,10 @@ Resources:
     Type: AWS::IAM::AccessKey
     Properties:
       UserName: !GetAtt PCFBase.Outputs.PcfIamUserName
+  BrokerIamUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !GetAtt PCFBase.Outputs.BrokerIAMUserName
   PCFDescribeStackPolicy:
     Type: AWS::IAM::Policy
     Properties:
@@ -448,6 +452,8 @@ Resources:
         "PcfElasticRuntimeS3ResourcesBucket": "${PCFBase.Outputs.PcfElasticRuntimeS3ResourcesBucket}",
         "PcfIamUserAccessKey": "${PcfIamUserAccessKey}",
         "PcfIamUserSecretAccessKey": "${PcfIamUserAccessKey.SecretAccessKey}",
+        "BrokerIamUserAccessKey": "${BrokerIamUserAccessKey}",
+        "BrokerIamUserSecretAccessKey": "${BrokerIamUserAccessKey.SecretAccessKey}",
         "PcfVmsSecurityGroupId": "${PCFBase.Outputs.PcfVmsSecurityGroup}",
         "PcfElbTcpName": "${PCFBase.Outputs.PcfElbTcpName}",
         "PcfElbSshName": "${PCFBase.Outputs.PcfElbSshName}",
