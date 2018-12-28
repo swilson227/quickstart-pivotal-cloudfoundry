@@ -227,49 +227,49 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-0746e6c9ebe097228
+      bootstrap: ami-0c44844f3b34cf174
       opsman: ami-0f343950081f2a497
     ap-northeast-2:
-      bootstrap: ami-04a24ccfd524ff29f
+      bootstrap: ami-0f3033cd316ffe1f8
       opsman: ami-0d51e3204fbbf9376
     ap-south-1:
-      bootstrap: ami-0bd1eec87670bcd48
+      bootstrap: ami-001cc7fa23924a742
       opsman: ami-046281a830cfdb371
     ap-southeast-1:
-      bootstrap: ami-014e3c574b31c599c
+      bootstrap: ami-088bd7d9c5bbac212
       opsman: ami-00ce9e04ab82343bd
     ap-southeast-2:
-      bootstrap: ami-04a1dc043ca0bdf49
+      bootstrap: ami-090f03ed89fa6be9f
       opsman: ami-0c3792b8e1f12430c
     ca-central-1:
-      bootstrap: ami-0a716bd67e255a961
+      bootstrap: ami-0986086503bb136fb
       opsman: ami-09f0ae80f84cc3d42
     eu-central-1:
-      bootstrap: ami-026b30b92bbba947b
+      bootstrap: ami-0c025248a503c85f1
       opsman: ami-0af2fd2dd7d237eb0
     eu-west-1:
-      bootstrap: ami-09ca2e8a6b1ebbde1
+      bootstrap: ami-0ed25934828b5f4c1
       opsman: ami-042cf2befd439635c
     eu-west-2:
-      bootstrap: ami-0e8b220931add6386
+      bootstrap: ami-00b4ebe2cb4603f1e
       opsman: ami-0f1e79c6790ded80e
     eu-west-3:
-      bootstrap: ami-043e526de7f60d365
+      bootstrap: ami-0834206d56d5e9907
       opsman: ami-0b34d63ea9067cce5
     sa-east-1:
-      bootstrap: ami-023ed48b27f436e4b
+      bootstrap: ami-0571875dc0cadf234
       opsman: ami-0dbb1971d3950ef2c
     us-east-1:
-      bootstrap: ami-0f383d80f9cded690
+      bootstrap: ami-0893974f0c8394762
       opsman: ami-07256b9d765d56df9
     us-east-2:
-      bootstrap: ami-0c0ed1d2926f8b5ea
+      bootstrap: ami-0a372c6a821eecae2
       opsman: ami-08fb5965e9b729726
     us-west-1:
-      bootstrap: ami-045090fe700fbb40f
+      bootstrap: ami-0b8bd64df13558d76
       opsman: ami-06ed586006e904651
     us-west-2:
-      bootstrap: ami-0fee2a669a7bfc348
+      bootstrap: ami-0e813ad0061625a31
       opsman: ami-0ae9c5289b7930896
 
 Resources:
