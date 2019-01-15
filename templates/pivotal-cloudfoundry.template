@@ -228,49 +228,49 @@ Mappings:
   AMIMapping:
     ap-northeast-1:
       bootstrap: ami-0c44844f3b34cf174
-      opsman: ami-0f343950081f2a497
+      opsman: ami-0ab711e98a284459e
     ap-northeast-2:
       bootstrap: ami-0f3033cd316ffe1f8
-      opsman: ami-0d51e3204fbbf9376
+      opsman: ami-012e9b4f269fe1338
     ap-south-1:
       bootstrap: ami-001cc7fa23924a742
-      opsman: ami-046281a830cfdb371
+      opsman: ami-08f0d06e48094ecd5
     ap-southeast-1:
       bootstrap: ami-088bd7d9c5bbac212
-      opsman: ami-00ce9e04ab82343bd
+      opsman: ami-01064b3bbf89d4ebe
     ap-southeast-2:
       bootstrap: ami-090f03ed89fa6be9f
-      opsman: ami-0c3792b8e1f12430c
+      opsman: ami-02cf0143d80d8e97c
     ca-central-1:
       bootstrap: ami-0986086503bb136fb
-      opsman: ami-09f0ae80f84cc3d42
+      opsman: ami-06b32996b09044dd7
     eu-central-1:
       bootstrap: ami-0c025248a503c85f1
-      opsman: ami-0af2fd2dd7d237eb0
+      opsman: ami-0d1c975a00128d356
     eu-west-1:
       bootstrap: ami-0ed25934828b5f4c1
-      opsman: ami-042cf2befd439635c
+      opsman: ami-022edb40013af2a5b
     eu-west-2:
       bootstrap: ami-00b4ebe2cb4603f1e
-      opsman: ami-0f1e79c6790ded80e
+      opsman: ami-09c17667b78a04801
     eu-west-3:
       bootstrap: ami-0834206d56d5e9907
-      opsman: ami-0b34d63ea9067cce5
+      opsman: ami-042293ff365182827
     sa-east-1:
       bootstrap: ami-0571875dc0cadf234
-      opsman: ami-0dbb1971d3950ef2c
+      opsman: ami-0ffaf8d69f78e93c1
     us-east-1:
       bootstrap: ami-0893974f0c8394762
-      opsman: ami-07256b9d765d56df9
+      opsman: ami-059a9848fa53ffaf9
     us-east-2:
       bootstrap: ami-0a372c6a821eecae2
-      opsman: ami-08fb5965e9b729726
+      opsman: ami-057fe4d24bfb5d174
     us-west-1:
       bootstrap: ami-0b8bd64df13558d76
-      opsman: ami-06ed586006e904651
+      opsman: ami-0ead22957d6d66575
     us-west-2:
       bootstrap: ami-0e813ad0061625a31
-      opsman: ami-0ae9c5289b7930896
+      opsman: ami-099209efd6d1bdaf3
 
 Resources:
   PCFBase:
