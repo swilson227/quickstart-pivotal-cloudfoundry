@@ -148,6 +148,7 @@ Parameters:
   DeploymentSize:
     Type: String
     AllowedValues:
+    - SmallFootPrint
     - Starter
     - Multi-AZ
     Description: Select the initial deployment size. Starter creates a single instance for most job VMs.
@@ -227,49 +228,52 @@ Rules:
 Mappings:
   AMIMapping:
     ap-northeast-1:
-      bootstrap: ami-0c44844f3b34cf174
+      bootstrap: ami-07b92b1a59746c6a3
       opsman: ami-0ab711e98a284459e
     ap-northeast-2:
-      bootstrap: ami-0f3033cd316ffe1f8
+      bootstrap: ami-0980768e968231148
       opsman: ami-012e9b4f269fe1338
     ap-south-1:
-      bootstrap: ami-001cc7fa23924a742
+      bootstrap: ami-0e632db5ee14da0a4
       opsman: ami-08f0d06e48094ecd5
     ap-southeast-1:
-      bootstrap: ami-088bd7d9c5bbac212
+      bootstrap: ami-0df2c3638bc70ff26
       opsman: ami-01064b3bbf89d4ebe
     ap-southeast-2:
-      bootstrap: ami-090f03ed89fa6be9f
+      bootstrap: ami-0fbe776e9c03ac874
       opsman: ami-02cf0143d80d8e97c
     ca-central-1:
-      bootstrap: ami-0986086503bb136fb
+      bootstrap: ami-06e34a5e3ceb14893
       opsman: ami-06b32996b09044dd7
     eu-central-1:
-      bootstrap: ami-0c025248a503c85f1
+      bootstrap: ami-04adbace475bd196f
       opsman: ami-0d1c975a00128d356
+    eu-north-1:
+      bootstrap: ami-081d088882b8b042d
+      opsman: ami-0b2b705e6c89433e3
     eu-west-1:
-      bootstrap: ami-0ed25934828b5f4c1
+      bootstrap: ami-00797283411419c14
       opsman: ami-022edb40013af2a5b
     eu-west-2:
-      bootstrap: ami-00b4ebe2cb4603f1e
+      bootstrap: ami-0d1365c4febfd0969
       opsman: ami-09c17667b78a04801
     eu-west-3:
-      bootstrap: ami-0834206d56d5e9907
+      bootstrap: ami-00e78bbc1ef2ce76e
       opsman: ami-042293ff365182827
     sa-east-1:
-      bootstrap: ami-0571875dc0cadf234
+      bootstrap: ami-032ef65131a170d3a
       opsman: ami-0ffaf8d69f78e93c1
     us-east-1:
-      bootstrap: ami-0893974f0c8394762
+      bootstrap: ami-04db489eeee0666b0
       opsman: ami-059a9848fa53ffaf9
     us-east-2:
-      bootstrap: ami-0a372c6a821eecae2
+      bootstrap: ami-01bcca9803635826f
       opsman: ami-057fe4d24bfb5d174
     us-west-1:
-      bootstrap: ami-0b8bd64df13558d76
+      bootstrap: ami-0dfbadec345b83744
       opsman: ami-0ead22957d6d66575
     us-west-2:
-      bootstrap: ami-0e813ad0061625a31
+      bootstrap: ami-0e24d311f60c782d5
       opsman: ami-099209efd6d1bdaf3
 
 Resources:
