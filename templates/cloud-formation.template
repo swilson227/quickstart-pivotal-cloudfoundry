@@ -670,7 +670,7 @@
       "Condition": "CreateRDS",
       "Properties": {
         "AllocatedStorage": "100",
-        "DBInstanceClass": "db.m4.large",
+        "DBInstanceClass": "db.t2.medium",
         "DBInstanceIdentifier": {
           "Fn::Join": [
             "",
@@ -684,11 +684,10 @@
         },
         "Engine": "mariadb",
         "EngineVersion": "10.1.31",
-        "MultiAZ": "True",
+        "MultiAZ": "False",
         "DBName": {
           "Ref": "RDSDBName"
         },
-        "Iops": "1000",
         "MasterUsername": {
           "Ref": "RDSUsername"
         },
@@ -1635,7 +1634,7 @@
             "id"
           ]
         },
-        "InstanceType": "t2.medium",
+        "InstanceType": "t2.micro",
         "Monitoring": "false",
         "SourceDestCheck": "false",
         "Tags": [
@@ -1684,7 +1683,7 @@
         "ImageId": {
           "Ref": "OpsManAMI"
         },
-        "InstanceType": "m4.large",
+        "InstanceType": "t3.medium",
         "KeyName": {
           "Ref": "OpsManSSHKeyPairName"
         },

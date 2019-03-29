@@ -28,7 +28,7 @@
         "c4.8xlarge"
       ],
       "ConstraintDescription": "Instance Type must be of a valid EC2 type",
-      "Default": "t2.medium",
+      "Default": "t2.micro",
       "Description": "Select the Instance Type to use for the NAT vm"
     },
     "03OpsManagerIngress": {
@@ -725,12 +725,11 @@
       "Condition": "CreateRDS",
       "Properties": {
         "AllocatedStorage": "100",
-        "DBInstanceClass": "db.m4.large",
+        "DBInstanceClass": "db.t2.medium",
         "Engine": "MySQL",
         "EngineVersion": "5.6.35",
-        "MultiAZ": "True",
+        "MultiAZ": "False",
         "DBName": {"Ref": "04RdsDBName"},
-        "Iops": "1000",
         "MasterUsername": {"Ref": "05RdsUsername"},
         "MasterUserPassword": {"Ref": "06RdsPassword"},
         "PubliclyAccessible": "False",
